@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>XADM: ilionx architecture design method :: XADM Handbook</title>
+    <link rel="canonical" href="https://ilionx.github.io/xadm-docs/handbook/0.1.0/handbook/book.html">
+    <meta name="generator" content="Antora 3.1.5">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://ilionx.github.io/xadm-docs">XADM Handbook</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="handbook" data-version="0.1.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../introduction.html">XADM Handbook</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Overview</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../phases/phases.html">Phases</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../phases/commercial-phase-overview.html">Commercial Phase: Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../phases/commercial-phase-tasks.html">Commercial Phase: Tasks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../phases/commercial-phase-artifacts.html">Commercial Phase: Artifacts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../code-samples.html">Code Samples</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary-of-terms.html">Glossary of Terms</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../phases/commercial-phase-overview.html">Commercial Phase: Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary-of-terms.html">Glossary of Terms</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">XADM Handbook</span>
+    <span class="version">0.1.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../introduction.html">XADM Handbook</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../introduction.html">0.1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../introduction.html">XADM Handbook</a></li>
+    <li><a href="book.html">XADM: ilionx architecture design method</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">XADM: ilionx architecture design method</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_what-is-xadm">What is XADM</a></li>
+<li><a href="#_mission-statement">Mission Statement</a></li>
+<li><a href="#_why-xadm">Why xADM</a></li>
+<li><a href="#_timeline">Timeline</a>
+<ul class="sectlevel3">
+<li><a href="#_origin">Origin</a></li>
+<li><a href="#_currently">Currently</a></li>
+</ul>
+</li>
+<li><a href="#_contributors">Contributors</a></li>
+<li><a href="#_questions-of-customers">Questions of customers</a></li>
+<li><a href="#_resources">Resources</a></li>
+</ul>
+</li>
+<li><a href="#_phases">Phases</a>
+<ul class="sectlevel2">
+<li><a href="#_commercial-phase-overview">Commercial Phase: Overview</a>
+<ul class="sectlevel3">
+<li><a href="#_tasks-and-artifacts">Tasks and Artifacts</a></li>
+<li><a href="#_questions-to-answer">Questions to Answer</a></li>
+<li><a href="#_milestone">Milestone</a></li>
+</ul>
+</li>
+<li><a href="#_commercial-phase-tasks">Commercial Phase: Tasks</a>
+<ul class="sectlevel3">
+<li><a href="#_team_formation">Team Formation</a>
+<ul class="sectlevel4">
+<li><a href="#_description">Description</a></li>
+<li><a href="#_resources-2">Resources</a></li>
+</ul>
+</li>
+<li><a href="#_risk_assessment">Risk Assessment</a>
+<ul class="sectlevel4">
+<li><a href="#_description-2">Description</a></li>
+<li><a href="#_resources-3">Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_commercial-phase-artifacts">Commercial Phase: Artifacts</a>
+<ul class="sectlevel3">
+<li><a href="#_project_plan">Project Plan</a>
+<ul class="sectlevel4">
+<li><a href="#_description-3">Description</a></li>
+<li><a href="#_vision">Vision</a></li>
+<li><a href="#_structure">Structure</a></li>
+<li><a href="#_master-risk-assessment">Master Risk Assessment</a></li>
+<li><a href="#_security-analysis">Security Analysis</a></li>
+<li><a href="#_resources-4">Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_appendices">Appendices</a></li>
+<li><a href="#_glossary-of-terms">Glossary of Terms</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="imageblock unresolved text-center">
+<div class="content">
+<img src="xadm.png" alt="XADM Logo">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what-is-xadm"><a class="anchor" href="#_what-is-xadm"></a>What is XADM</h3>
+<div class="paragraph">
+<p>ilionx architecture design method (XADM) describes project phases, processes and artefacts which are linked to ach other.
+xADM decribes why to follow this process, how and what to do.</p>
+</div>
+<div class="paragraph">
+<p>It has been set up in a layered fashion.
+Which means that at the highest level it could be adopted by a wide variety of teams in different kind of technology stacks.
+The lower you descent the more specific it is tailored towards a specific technology stack.
+In this case the Microsoft stack has been fully ironed out (Azure, C#.Net).</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="_images/diag-42dcd386a27aa4040e2891c2a72b3084b76883bc.svg" alt="Diagram">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Did You Know?</div>
+<div class="paragraph">
+<p>XADM is based on a lot of existing ideas around software development.<br>
+Inspiration originates from Rup, Waterfall, SDM, etc.</p>
+</div>
+<div class="paragraph">
+<p>Because, what is wrong with these "old" ideas/methods. Is agile scrum so much better?</p>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Practice, practice, practice!!!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mission-statement"><a class="anchor" href="#_mission-statement"></a>Mission Statement</h3>
+<div class="paragraph">
+<p>We need to have a professional approach for delivering software projects.
+By standardizing our way of working via phases, processes and artefacts, the focus is on the content, the project and solution design effort.
+We facilitate on-boarding, handovers and reviews.</p>
+</div>
+<div class="paragraph">
+<p>Having a guided approach for software projects, eliminates a lot of hassle upfront in the project.
+There is a clear script to be followed, which:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>improves estimations</p>
+</li>
+<li>
+<p>improves project execution</p>
+</li>
+<li>
+<p>improves the ability to review a project</p>
+</li>
+<li>
+<p>improves onboarding of new members</p>
+</li>
+<li>
+<p>improves predictability</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why-xadm"><a class="anchor" href="#_why-xadm"></a>Why xADM</h3>
+<div class="paragraph">
+<p>Software can be the differentiating factor for companies within their business domain.
+So successful software projects can deliver great value, but unsuccessful software projects can deliver a devastating blow into the financial health of a company and the viability of the company as a whole.</p>
+</div>
+<div class="paragraph">
+<p><em><a href="https://tweakers.net/nieuws/130481/nrc-capgemini-moet-21-miljoen-euro-boete-betalen-voor-mislukt-ict-project-svb.html">Capgemini moet 21 miljoen euro boete betalen voor mislukt ict project SVB</a></em></p>
+</div>
+<div class="paragraph">
+<p><em><a href="http://nos.nl/artikel/2181664-plasterk-stopt-met-geldverslindende-vernieuwing-bevolkingsregister.html">Plasterk stopt met geldverslindende vernieuwing bevolkingsregister</a></em></p>
+</div>
+<div class="paragraph">
+<p><em><a href="https://tweakers.net/nieuws/130711/belgische-spoorwegmaatschappij-schrapt-it-systeem-dat-al-30-miljoen-euro-kostte.html">Belgische spoorwegmaatschappij schrapt IT systeem dat al 30 miljoen euro kostte</a></em></p>
+</div>
+<div class="paragraph">
+<p><em><a href="https://www.computable.nl/artikel/nieuws/erp/6464719/250449/lidl-neemt-verlies-van-half-miljard-op-sap-project.html">Lidl neemt verlies van half miljard op sap project</a></em></p>
+</div>
+<div class="paragraph">
+<p><em><a href="https://tweakers.net/nieuws/153938/kvk-stak-15-komma-5-miljoen-euro-in-ict-moderniseringsproject-zonder-resultaat.html">KvK stak 15,5 miljoen euro in ICT moderniseringsproject zonder resultaat</a></em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_timeline"><a class="anchor" href="#_timeline"></a>Timeline</h3>
+<div class="sect3">
+<h4 id="_origin"><a class="anchor" href="#_origin"></a>Origin</h4>
+<div class="paragraph">
+<p>The initial trigger for xADM came from the architects (See <a href="#_contributors">Contributors</a>).
+Initially xADM guided the architect in going from requirements to architecture.
+This is a combination of experiences of the architects and based on IDesign methods.</p>
+</div>
+<div class="paragraph">
+<p>Later in time the scope of xADM has been widened to also involve project phases and detailed level design.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_currently"><a class="anchor" href="#_currently"></a>Currently</h4>
+<div class="paragraph">
+<p>xADM describes project phases, processes and artefacts to be used when running a software project.
+It can be used as a whole to tackle software projects but it can also be used in parts eg. only use particular processes or artefacts.</p>
+</div>
+<div class="paragraph">
+<p>It is still growing and it now describes what a BA does, how a UX person works, what an architect does and how all of this fits into planning and executing a software project.
+All these roles have a particular part to fulfill before development can start developing.</p>
+</div>
+<div class="paragraph">
+<p>There is also a technical part described in xADM that supports the method on the technical side.
+This framework is called Copper.
+It implements the reference architecture and covers a lot of the non functional requirements out-of-the-box.
+Using Copper is not a must but will significantly speed-up development and the maturity of the product.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Role</th>
+<th class="tableblock halign-left valign-top">Specialism</th>
+<th class="tableblock halign-left valign-top">Aka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wouter Roos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Architect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WCF, API, Tooling, Azure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toolboy</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bart Bovend&#8217;eerdt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Architect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service fabric, Azure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Copper</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rob Hodzelmans</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Architect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project quotation, &#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Koen Mannaerts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Architect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project design</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_questions-of-customers"><a class="anchor" href="#_questions-of-customers"></a>Questions of customers</h3>
+<div class="ulist">
+<div class="title">Vragen die we van klanten krijgen:</div>
+<ul>
+<li>
+<p>We hebben een applicatie gebouwd maar zien problemen opduiken: performance, integratie, onderhoudbaarheid. Hoe beginnen?</p>
+</li>
+<li>
+<p>We zijn al jaren aan het bouwen en hebben tig applicaties maar alles staat los van elkaar en willen integreren. Maar dit lukt ons niet. Hoe verder?</p>
+</li>
+<li>
+<p>We zijn al voor de 2,3de, 4de keer gestart met bouwen maar het is telkens mislukt. We willen nu even goed nadenken voor we beginnen. Kan je ons helpen?</p>
+</li>
+<li>
+<p>We hebben een bestaand landschap maar dit ondersteunt onze huidige business expansie niet meer, hoe verder?</p>
+</li>
+<li>
+<p>We willen een analyse van ons applicatie landschap en advies over: hoe verder.</p>
+</li>
+<li>
+<p>We willen volgens IDesign werken maar hebben hulp nodig.</p>
+</li>
+<li>
+<p>We hebben een architect maar die heeft mentorship gevraagd.</p>
+</li>
+<li>
+<p>We zijn een startup en willen iets… (letterlijk “iets” 😉)</p>
+</li>
+<li>
+<p>We zijn een groot bedrijf maar onze dev capaciteit is volzet en we hebben een project wat zeker klaar moet zijn. Kan ilionx dit bouwen?</p>
+</li>
+<li>
+<p>We willen een IT partner die voor ons software kan bouwen waarbij kosten en tijdslijnen op voorhand meegedeeld kunnen worden en waarbij deze aspecten continu gemonitord worden.</p>
+</li>
+<li>
+<p>We hebben een 3rd party leverancier maar willen iemand onafhankelijk het werk laten beoordelen.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Deze opdrachten kunnen verschillende vormen aannemen:</div>
+<ul>
+<li>
+<p>Fulltime bij de klant als architect</p>
+</li>
+<li>
+<p>Fulltime intern projecten oppakken</p>
+</li>
+<li>
+<p>Architectuur consultancy: gedurende het project wekelijks 1 of meerdere malen onsite.</p>
+</li>
+<li>
+<p>Korte fulltime engagement om het project op te starten, wekelijks check achteraf op voortgang.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#attachment$SDM.pdf" class="xref unresolved" target="_blank" rel="noopener">Software Development Methodology (Liberty University)</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_phases"><a class="anchor" href="#_phases"></a>Phases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_commercial-phase-overview"><a class="anchor" href="#_commercial-phase-overview"></a>Commercial Phase: Overview</h3>
+<div class="paragraph">
+<p>The purpose of the Commercial phase of a project is to allow the project team to determine the initial goals, scope and structure of the project.</p>
+</div>
+<div class="sect3">
+<h4 id="_tasks-and-artifacts"><a class="anchor" href="#_tasks-and-artifacts"></a>Tasks and Artifacts</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 57.1428%;">
+<col style="width: 14.2857%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tasks</th>
+<th class="tableblock halign-left valign-top">Req&#8217;d</th>
+<th class="tableblock halign-left valign-top">Role Responsible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#phases/commercial-phase-tasks.adoc#_team_formation" class="xref unresolved">Team Formation</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project Management</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#phases/commercial-phase-tasks.adoc#_risk_assessment" class="xref unresolved">Risk Assessment</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project Management</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Security Analysis</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Preliminary Schedule Development</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Rough Draft of Scope</p>
+</li>
+<li>
+<p>Rough Draft of Schedule</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project Management</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>User Department Observation</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product Management</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Measurements Development</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project Management</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 57.1428%;">
+<col style="width: 14.2857%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Artifacts</th>
+<th class="tableblock halign-left valign-top">Req&#8217;d</th>
+<th class="tableblock halign-left valign-top">Role Responsible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#phases/commercial-phase-artifacts.adoc#_project_plan" class="xref unresolved">Project Plan</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project Management</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_questions-to-answer"><a class="anchor" href="#_questions-to-answer"></a>Questions to Answer</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Have you identified team members for each role of the team?</p>
+</li>
+<li>
+<p>Does the team include appropriate customer representation, with the needed authority to make decisions about features, priorities, and resources?</p>
+</li>
+<li>
+<p>Does the team have adequate Information Services representation that can ensure a smooth implementation, * training, and ongoing maintenance of the product?</p>
+</li>
+<li>
+<p>Have you identified the major features that will be included on this project?</p>
+</li>
+<li>
+<p>Have you identified the major risks associated with this project, along with mitigation strategies for those risks?</p>
+</li>
+<li>
+<p>Have you developed a high-level schedule for all phases of the project?</p>
+</li>
+<li>
+<p>Do the developers on the project have an adequate understanding of the business domain?</p>
+</li>
+<li>
+<p>Does the team have an understanding of the sensitivity of the data that will be handled through the system?</p>
+</li>
+<li>
+<p>Does the team know what measurements you are going to track throughout the project?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_milestone"><a class="anchor" href="#_milestone"></a>Milestone</h4>
+<div class="paragraph">
+<p>Project Scope and Vision Approved</p>
+</div>
+<div class="paragraph">
+<p>The Commercial phase is complete when the entire team and stakeholders have come to an agreement regarding the scope and structure of the project.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commercial-phase-tasks"><a class="anchor" href="#_commercial-phase-tasks"></a>Commercial Phase: Tasks</h3>
+<div class="sect3">
+<h4 id="_team_formation"><a class="anchor" href="#_team_formation"></a>Team Formation</h4>
+<div class="sect4">
+<h5 id="_description"><a class="anchor" href="#_description"></a>Description</h5>
+<div class="paragraph">
+<p>The team formation process is modeled after the Microsoft Solutions Framework (MSF) Team Model.
+This model identifies 6 roles for each project.</p>
+</div>
+<div class="paragraph">
+<p>The goal of this task is to identify at least one person to be the lead on each role.
+Individuals may fulfill duties on more than one role.
+Also, there may be more than one person fulfilling one role.</p>
+</div>
+<div class="paragraph">
+<p>For reference, a short description of each role is listed below.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Roles</div>
+<ol class="arabic">
+<li>
+<p><em>Product Management</em><br>
+Satisfied Customers:
+This role is primarily responsible for giving requirements to the developers, prioritizing requirements within the project, and establishing the business case.</p>
+</li>
+<li>
+<p><em>Program (Project) Management</em><br>
+Delivery Within Project Constraints:
+This role is primarily responsible for making sure the project meets the established goals of the team, making sure it is delivered on time and within budget, allocation resources, facilitating communication, and driving critical decisions.</p>
+</li>
+<li>
+<p><em>Development</em><br>
+Delivery to Product Specifications:
+This role is primarily responsible for building the product such that it meets the needs of the customer, being a technological consultant, and creating and maintaining estimates.</p>
+</li>
+<li>
+<p><em>Testing</em><br>
+Release After Addressing All Issues:
+This role is primarily responsible for making sure all issues are known and addressed before release.</p>
+</li>
+<li>
+<p><em>User Education</em><br>
+Enhanced User Performance:
+This role is primarily responsible for making sure the users can be as productive as possible with the new (or revised) product, providing input on usability, and training the users on the product before and after release.
+For each project, a representative from <a href="#glossary-of-terms.adoc#_disc" class="xref unresolved">DISC</a> will fulfill this role.</p>
+</li>
+<li>
+<p><em>Logistics Management</em><br>
+Smooth Deployment and Ongoing Management:
+This role is primarily responsible for ensuring that the deployment goes as smoothly as possible and that the product is set up for long-term maintenance.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resources-2"><a class="anchor" href="#_resources-2"></a>Resources</h5>
+<div class="paragraph">
+<p><em>TODO</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_risk_assessment"><a class="anchor" href="#_risk_assessment"></a>Risk Assessment</h4>
+<div class="sect4">
+<h5 id="_description-2"><a class="anchor" href="#_description-2"></a>Description</h5>
+<div class="paragraph">
+<p>Risk Assessment is the process of perceiving, analyzing and preparing for (or dealing with) conditions or events which threaten the success of a project.
+The amount of effort needed to assess risk is usually proportional to the size and scope of the project.
+Since life changes as a project moves along, risk assessment must be done in all phases of the project.</p>
+</div>
+<div class="paragraph">
+<p>During the envisioning phase of a project, most of the risk assessment effort will be directed towards predicting which conditions or events which are the most likely to threaten the success of the project.
+As such, your goals in risk assessment are:</p>
+</div>
+<div class="ulist">
+<div class="title">Goals</div>
+<ul>
+<li>
+<p>list as many potential dangers that can be reasonably foreseen</p>
+</li>
+<li>
+<p>determine the probability of occurrence for each danger listed</p>
+</li>
+<li>
+<p>determine the extent of potential loss for each danger listed</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once this is done, re-order the entire list from most dangerous to least dangerous.
+This will help keep things in perspective as the project wears on.
+(Remember to re-order the list again when re-assessing the dangers in later phases.)</p>
+</div>
+<div class="ulist">
+<div class="title">5 Common Risks to Assess for the Project</div>
+<ul>
+<li>
+<p>Are the stakeholders actively involved in their role in the project?</p>
+</li>
+<li>
+<p>Are new features requested after the requirements have been declared complete?</p>
+</li>
+<li>
+<p>Do any features or products utilized violate the provided Information Security Guidelines?</p>
+</li>
+<li>
+<p>Do the requirements affect a change in other products not previously included in this project?</p>
+</li>
+<li>
+<p>Does inadequate testing contribute to a larger number of defects in the deployed product?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resources-3"><a class="anchor" href="#_resources-3"></a>Resources</h5>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Risk_management">Risk Management</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commercial-phase-artifacts"><a class="anchor" href="#_commercial-phase-artifacts"></a>Commercial Phase: Artifacts</h3>
+<div class="sect3">
+<h4 id="_project_plan"><a class="anchor" href="#_project_plan"></a>Project Plan</h4>
+<div class="sect4">
+<h5 id="_description-3"><a class="anchor" href="#_description-3"></a>Description</h5>
+<div class="paragraph">
+<p>The Project Plan combines the three main documents that must be completed for the Envisioning Phase.
+These documents are: The Vision Document, the Project Structure Document, and the Master Risk Assessment Document.
+The following is a description of the components of The Project Plan.
+The official version of this document should be signed by the project team and stakeholders.
+The signed copy of the document should be provided to the IS Administration Office for filing.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_vision"><a class="anchor" href="#_vision"></a>Vision</h5>
+<div class="paragraph">
+<p><em>Vision</em> - Documents the description of the project’s deliverable as the solution to the stated need.</p>
+</div>
+<div class="paragraph">
+<p><em>Need</em> - Why is this project needed? What is the problem definition?</p>
+</div>
+<div class="paragraph">
+<p><em>Goals and Objectives</em> - What are the broad goals and objectives for the project?</p>
+</div>
+<div class="paragraph">
+<p><em>Feasibility</em> - Has this project been determined as feasible for the University to complete?</p>
+</div>
+<div class="paragraph">
+<p><em>Constraints/Assumptions</em> - What are the project assumptions and constraints?</p>
+</div>
+<div class="paragraph">
+<p><em>Scope Statement</em> - What are the boundaries for the project? What is in and what is out?</p>
+</div>
+<div class="paragraph">
+<p><em>Schedule/Timeframe</em> - What is the high level estimate for the timeframe of the project?</p>
+</div>
+<div class="olist arabic">
+<div class="title"><em>Performance Objectives</em> -</div>
+<ol class="arabic">
+<li>
+<p>Broad Design Considerations</p>
+</li>
+<li>
+<p>Measurable Goals - What are the team’s measures of success for the project?</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_structure"><a class="anchor" href="#_structure"></a>Structure</h5>
+<div class="olist arabic">
+<div class="title"><em>The Project Team</em></div>
+<ol class="arabic">
+<li>
+<p>Team Organization - Who is the project team and what are their roles? See Team Formation for a description of the team roles.</p>
+</li>
+<li>
+<p>Staffing Management Plan - Documents the required human resources and their approximate contribution time for the project.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>Stakeholders</em> - Who are the stakeholders?</p>
+</div>
+<div class="olist arabic">
+<div class="title"><em>Communication Plan</em> -</div>
+<ol class="arabic">
+<li>
+<p>Email List - Documents the memebers of the project team and the email distribution list that was created for the project.</p>
+</li>
+<li>
+<p>Meeting Schedule - Documents when the team will meet and who is required to attend the meetings.</p>
+</li>
+<li>
+<p>Reporting Plan - Documents the various reports and items that must be communicated to keep the team and stakeholders thoroughly informed of the status of the project.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title"><em>Change Management Plan (optional)</em> -</div>
+<ol class="arabic">
+<li>
+<p>How will change requests be handled?</p>
+</li>
+<li>
+<p>How will changes be tracked?</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>Quality Assurance Plan (optional)</em> - The process to evaluate the project’s performance to ensure that the project will perform within quality standards.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_master-risk-assessment"><a class="anchor" href="#_master-risk-assessment"></a>Master Risk Assessment</h5>
+<div class="paragraph">
+<p>See the Risk Assessment Plan</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_security-analysis"><a class="anchor" href="#_security-analysis"></a>Security Analysis</h5>
+<div class="paragraph">
+<p>What is the security level for the project? How will security be monitored throughout the project?<br>
+(See the Security Analysis task for more information)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_resources-4"><a class="anchor" href="#_resources-4"></a>Resources</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>DLP Contact System Vision and Structure Document</p>
+</li>
+<li>
+<p>Guide to the Project Management Body of Knowledge</p>
+</li>
+<li>
+<p>Complete Idiot’s Guide to Project Management</p>
+</li>
+<li>
+<p>Low Intensity Project Management (Gantthead.com</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appendices"><a class="anchor" href="#_appendices"></a>Appendices</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_glossary-of-terms"><a class="anchor" href="#_glossary-of-terms"></a>Glossary of Terms</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This glossary is a work in progress. It does not include all the terms in XADM.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">xADM</dt>
+<dd>
+<p>The ilionx Architecture Design Method</p>
+</dd>
+<dt class="hdlist1">SDM</dt>
+<dd>
+<p><a href="https://nl.wikipedia.org/wiki/System_Development_Methodology">System Development Methodology</a></p>
+</dd>
+<dt class="hdlist1">Artifact</dt>
+<dd>
+<p>Any document (physical or electronic) that persists after the project is completed.
+Artifacts include items delivered to the customer (project plans, requirements, etc.) as well as
+items used internally (design documentation, etc.)</p>
+</dd>
+<dt class="hdlist1">Deliverable</dt>
+<dd>
+<p>Items created in the development process that are built for the customer.
+Deliverables are defined by the team and are different for each team. Examples include
+source code (and associated features), users manuals, etc.</p>
+</dd>
+<dt class="hdlist1">Measurements</dt>
+<dd>
+<p>(also known as metrics) The collection of numeric assessments of a project&#8217;s
+success. Project success should be (if at all possible) stated in terms of objective, measurable
+goals that leave no room for interpretation. For instance, a project measurement could be the
+number of defects found after release of the product.
+Methodology: A set of standards or protocols to follow when developing software. Typically,
+the methodology will include an SDLC and associated practices for each phase. Methodologies
+are also defined in terms of their "weight". That is, heavyweight methodologies require much
+documentation and ceremony. Whereas, lightweight methodologies require little
+documentation and ceremony outside of writing the code</p>
+</dd>
+<dt class="hdlist1">Risk Mitigation</dt>
+<dd>
+<p>The process of risk assessment in software projects is the act of finding all
+possible things that could go wrong with a project during its development and deployment.
+The process of keeping these risks from occurring, or minimizing the impact of a risk that
+does occur is risk mitigation.</p>
+</dd>
+<dt class="hdlist1">Scope</dt>
+<dd>
+<p>What features are in the project (as opposed to those that are out of the project).
+The scope defines the boundaries of the work that will be done on the project.</p>
+</dd>
+<dt class="hdlist1">Software Development Life Cycle (SDLC)</dt>
+<dd>
+<p>The phases a software development project will
+go through from inception of the project to completion.</p>
+</dd>
+<dt class="hdlist1">Stakeholders</dt>
+<dd>
+<p>Members of the company (or sometimes outside the company)
+that have a stake in the outcome of the project. Frequently stakeholders are senior staff
+members who are responsible for large parts of the company. Additionally, stakeholders
+might be those in departments who are affected by the work of the department the project is
+serving.</p>
+</dd>
+<dt class="hdlist1">Task</dt>
+<dd>
+<p>In this methodology handbook, we are using the term task to denote anything the
+project team must do throughout the cycle of development that doesn&#8217;t necessarily yield an
+artifact or deliverable. Sometimes these tasks become an input to an artifact (e.g. developing
+a Rough Draft of Schedule becomes an input to the Project Plan). Many times, it is
+something that just creates value for the team that doesn&#8217;t need documented (e.g. Peer
+Reviews or User Department Observation.</p>
+</dd>
+<dt class="hdlist1">User Interface</dt>
+<dd>
+<p>The part of the software system that the user interacts with. This could be a
+web page, an RPG program, or a windows application. The distinction is made between this
+user interface and the application logic that goes on "behind the scenes"</p>
+</dd>
+</dl>
+</div>
+<div id="_disc" class="dlist">
+<dl>
+<dt class="hdlist1">DISC</dt>
+<dd>
+<p>DISC assessments are behavioral self-assessment tools based on psychologist William Moulton Marston&#8217;s DISC emotional and behavioral theory, first published in 1928.
+<a href="https://en.wikipedia.org/wiki/DISC_assessment" class="bare">https://en.wikipedia.org/wiki/DISC_assessment</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
